@@ -12,7 +12,7 @@ public class FileHandler {
         try {
             FileWriter fw = new FileWriter(data, true);
             PrintWriter writer = new PrintWriter(fw);
-            writer.println(user.getFullName() + "," + user.getUniqueName() + "," + user.getPassword() + "," + user.getBalance());
+            writer.println(user.getFullName() + "," + user.getUserName() + "," + user.getPassword() + "," + user.getBalance());
             writer.flush();
             fw.flush();
             writer.close();

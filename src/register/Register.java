@@ -27,18 +27,18 @@ public class Register {
                 break;
             }
         }
-        String uniqueName;
+        String userName;
         while (true) {
             boolean done;
-            uniqueName = readInputFromUser("Enter Unique Name: ", errorMessage("unique name"));
-            done = validateUniqueName(uniqueName);
+            userName = readInputFromUser("Enter User Name: ", errorMessage("user name"));
+            done = validateUserName(userName);
             if (done) {
                 break;
             }
         }
         String password = readInputFromUser("Enter password: ", errorMessage("password"));
         String encryptedPassword = auth.encryptPassword(password);
-        User user = new User(fullName, uniqueName, encryptedPassword);
+        User user = new User(fullName, userName, encryptedPassword);
         fileHandler.writeToFile(user);
     }
 
@@ -68,10 +68,10 @@ public class Register {
         return true;
     }
 
-    private boolean validateUniqueName(String input) {
+    private boolean validateUserName(String input) {
         for (User userData : users) {
-            if ((userData.getUniqueName().equals(input))) {
-                System.out.println("Unique name already exists.");
+            if ((userData.getUserName().equals(input))) {
+                System.out.println("User name already exists.");
                 return false;
             }
         }

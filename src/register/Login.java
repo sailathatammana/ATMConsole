@@ -21,10 +21,10 @@ public class Login {
         users = getAllUsers();
         while (true) {
             boolean done = false;
-            String uniqueName = readInputFromUser("Enter Unique Name: ", errorMessage("unique name"));
+            String userName = readInputFromUser("Enter user Name: ", errorMessage("user name"));
             String password = readInputFromUser("Enter password: ", errorMessage("password"));
             String encryptedPassword = auth.encryptPassword(password);
-            done = validateLoginDetails(uniqueName, encryptedPassword);
+            done = validateLoginDetails(userName, encryptedPassword);
             if (done) {
                 System.out.println("Successfully logged.");
                 break;
@@ -51,9 +51,9 @@ public class Login {
         return input;
     }
 
-    private boolean validateLoginDetails(String uniqueName, String encryptedPassword) {
+    private boolean validateLoginDetails(String userName, String encryptedPassword) {
         for (User userData : users) {
-            if ((userData.getUniqueName().equals(uniqueName)) && (userData.getPassword().equals(encryptedPassword))) {
+            if ((userData.getUserName().equals(userName)) && (userData.getPassword().equals(encryptedPassword))) {
                return true;
             }
         }

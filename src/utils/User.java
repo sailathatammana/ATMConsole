@@ -2,18 +2,18 @@ package utils;
 
 public class User {
     private String fullName;
-    private String uniqueName;
+    private String userName;
     private String password;
     private double balance;
 
-    public User(String fullName, String uniqueName, String password) {
+    public User(String fullName, String userName, String password) {
         this.fullName = fullName;
-        this.uniqueName = uniqueName;
+        this.userName = userName;
         this.password = password;
     }
 
-    public User(String uniqueName, String password) {
-        this.uniqueName = uniqueName;
+    public User(String userName, String password) {
+        this.userName = userName;
         this.password = password;
     }
 
@@ -29,12 +29,12 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getUniqueName() {
-        return uniqueName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUniqueName(String uniqueName) {
-        this.uniqueName = uniqueName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
