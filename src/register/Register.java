@@ -1,6 +1,5 @@
-package Register;
+package register;
 
-import homeMenu.HomeMenu;
 import utils.FileHandler;
 import utils.User;
 
@@ -23,21 +22,23 @@ public class Register {
         while (true) {
             boolean done;
             fullName = readInputFromUser("Enter Full Name: ", errorMessage("full name"));
-            done = validateFirstName(fullName);
+            done = validateFullName(fullName);
             if (done) {
                 break;
             }
         }
-        String userName = readInputFromUser("Enter User Name: ", errorMessage("user name"));
-        String password = readInputFromUser("Enter password: ", errorMessage("password"));
-        String encryptedPassword = auth.encryptPassword(password);
-        User user = new User(fullName, userName, encryptedPassword);
-        for (User userData : users) {
-            if ((userData.getFullName().equals(user.getFullName())) && (userData.getUniqueName().equals(user.getUniqueName())) && (userData.getPassword().equals(user.getPassword()))) {
-                System.out.println("Already registered. Please login");
-                new HomeMenu();
+        String uniqueName;
+        while (true) {
+            boolean done;
+            uniqueName = readInputFromUser("Enter Unique Name: ", errorMessage("unique name"));
+            done = validateUniqueName(uniqueName);
+            if (done) {
+                break;
             }
         }
+        String password = readInputFromUser("Enter password: ", errorMessage("password"));
+        String encryptedPassword = auth.encryptPassword(password);
+        User user = new User(fullName, uniqueName, encryptedPassword);
         fileHandler.writeToFile(user);
     }
 
@@ -57,10 +58,20 @@ public class Register {
         return input;
     }
 
-    private boolean validateFirstName(String input) {
+    private boolean validateFullName(String input) {
         for (User userData : users) {
             if ((userData.getFullName().equals(input))) {
                 System.out.println("Full name already exists.");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean validateUniqueName(String input) {
+        for (User userData : users) {
+            if ((userData.getUniqueName().equals(input))) {
+                System.out.println("Unique name already exists.");
                 return false;
             }
         }
