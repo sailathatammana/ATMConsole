@@ -1,9 +1,11 @@
 package mainMenu;
 
+import utils.User;
+
 public class MainMenu {
-    public MainMenu() {
-        MainMenuModel model = new MainMenuModel();
-        new MainMenuView(model.getMenuOptions());
+    public MainMenu(User user) {
+        MainMenuModel model = new MainMenuModel(user);
+        new MainMenuView(model.getMenuOptions(),user);
         MainMenuController controller = new MainMenuController(model);
         controller.requestUserInput();
     }

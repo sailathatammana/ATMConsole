@@ -12,6 +12,7 @@ public class Login {
     Authentication auth = new Authentication();
     FileHandler fileHandler = new FileHandler();
     private List<User> users;
+    private User userSelected;
 
     private List<User> getAllUsers() {
         return fileHandler.readFromFile();
@@ -32,7 +33,7 @@ public class Login {
                 System.out.println("Invalid Credentials");
             }
         }
-        new MainMenu();
+        new MainMenu(userSelected);
     }
 
     private String errorMessage(String value) {
@@ -54,7 +55,8 @@ public class Login {
     private boolean validateLoginDetails(String userName, String encryptedPassword) {
         for (User userData : users) {
             if ((userData.getUserName().equals(userName)) && (userData.getPassword().equals(encryptedPassword))) {
-               return true;
+               userSelected = userData;
+                return true;
             }
         }
        return false;

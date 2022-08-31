@@ -1,10 +1,17 @@
 package mainMenu;
 
+import utils.User;
+
 import java.util.List;
 
 public class MainMenuModel {
+    private User user;
     public final List<String> menuOptions = List.of("View Balance", "Deposit Money", "Withdraw Money",
             "Transfer Money", "Edit Profile", "Logout");
+
+    public MainMenuModel(User user) {
+        this.user = user;
+    }
 
     public List<String> getMenuOptions() {
         return menuOptions;
