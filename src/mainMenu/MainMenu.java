@@ -1,11 +1,13 @@
 package mainMenu;
 
-import utils.User;
+import register.User;
+
+import java.util.List;
 
 public class MainMenu {
-    public MainMenu(User user) {
-        MainMenuModel model = new MainMenuModel(user);
-        new MainMenuView(model.getMenuOptions(),user);
+    public MainMenu(List<User> users, int index) {
+        MainMenuModel model = new MainMenuModel(users, index);
+        new MainMenuView(model.getMenuOptions(), users, index);
         MainMenuController controller = new MainMenuController(model);
         controller.requestUserInput();
     }

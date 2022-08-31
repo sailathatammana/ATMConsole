@@ -2,7 +2,6 @@ package register;
 
 import mainMenu.MainMenu;
 import utils.FileHandler;
-import utils.User;
 
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +11,7 @@ public class Login {
     Authentication auth = new Authentication();
     FileHandler fileHandler = new FileHandler();
     private List<User> users;
-    private User userSelected;
+    private int index;
 
     private List<User> getAllUsers() {
         return fileHandler.readFromFile();
@@ -21,19 +20,18 @@ public class Login {
     public void LoginUser() {
         users = getAllUsers();
         while (true) {
-            boolean done = false;
+            boolean done;
             String userName = readInputFromUser("Enter user Name: ", errorMessage("user name"));
             String password = readInputFromUser("Enter password: ", errorMessage("password"));
             String encryptedPassword = auth.encryptPassword(password);
             done = validateLoginDetails(userName, encryptedPassword);
             if (done) {
-                System.out.println("Successfully logged.");
                 break;
             } else {
                 System.out.println("Invalid Credentials");
             }
         }
-        new MainMenu(userSelected);
+        new MainMenu(users, index);
     }
 
     private String errorMessage(String value) {
@@ -55,10 +53,10 @@ public class Login {
     private boolean validateLoginDetails(String userName, String encryptedPassword) {
         for (User userData : users) {
             if ((userData.getUserName().equals(userName)) && (userData.getPassword().equals(encryptedPassword))) {
-               userSelected = userData;
+                index = users.indexOf(userData);
                 return true;
             }
         }
-       return false;
+        return false;
     }
 }

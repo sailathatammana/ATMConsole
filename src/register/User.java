@@ -1,6 +1,8 @@
-package utils;
+package register;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String fullName;
     private String userName;
     private String password;
@@ -10,15 +12,6 @@ public class User {
         this.fullName = fullName;
         this.userName = userName;
         this.password = password;
-    }
-
-    public User(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
-
-    public User(double balance) {
-        this.balance = balance;
     }
 
     public String getFullName() {

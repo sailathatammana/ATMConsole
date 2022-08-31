@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Display {
     public static void chooseOption(){
-        System.out.println("Please choose an option: ");
+        System.out.print("Please choose an option: ");
     }
 
     public static void displayList(List<String> options){

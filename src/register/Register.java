@@ -1,8 +1,8 @@
 package register;
 
 import utils.FileHandler;
-import utils.User;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,14 +10,14 @@ public class Register {
     Scanner scanner = new Scanner(System.in);
     Authentication auth = new Authentication();
     FileHandler fileHandler = new FileHandler();
-    private List<User> users;
+    private List<User> user = new ArrayList<>();
 
     private List<User> getAllUsers() {
         return fileHandler.readFromFile();
     }
 
     public void adduser() {
-        users = getAllUsers();
+        user = getAllUsers();
         String fullName;
         while (true) {
             boolean done;
@@ -38,8 +38,9 @@ public class Register {
         }
         String password = readInputFromUser("Enter password: ", errorMessage("password"));
         String encryptedPassword = auth.encryptPassword(password);
-        User user = new User(fullName, userName, encryptedPassword);
+        user.add(new User(fullName, userName, encryptedPassword));
         fileHandler.writeToFile(user);
+        System.out.println("Registered successfully!");
     }
 
     private String errorMessage(String value) {
@@ -59,7 +60,7 @@ public class Register {
     }
 
     private boolean validateFullName(String input) {
-        for (User userData : users) {
+        for (User userData : user) {
             if ((userData.getFullName().equals(input))) {
                 System.out.println("Full name already exists.");
                 return false;
@@ -69,7 +70,7 @@ public class Register {
     }
 
     private boolean validateUserName(String input) {
-        for (User userData : users) {
+        for (User userData : user) {
             if ((userData.getUserName().equals(input))) {
                 System.out.println("User name already exists.");
                 return false;

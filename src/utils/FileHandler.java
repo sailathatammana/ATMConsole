@@ -1,41 +1,39 @@
 package utils;
 
+import register.User;
+
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class FileHandler {
-    File data = new File("data.txt");
+    private List<User> users = new ArrayList<User>();
+    private final String fileName = "data.txt";
 
-    public void writeToFile(User user) {
+    public void writeToFile(List<User> user) {
         try {
-            FileWriter fw = new FileWriter(data, true);
-            PrintWriter writer = new PrintWriter(fw);
-            writer.println(user.getFullName() + "," + user.getUserName() + "," + user.getPassword() + "," + user.getBalance());
-            writer.flush();
-            fw.flush();
-            writer.close();
-            fw.close();
+            FileOutputStream file = new FileOutputStream(fileName);
+            ObjectOutputStream output = new ObjectOutputStream(file);
+            output.writeObject(user);
+            output.close();
+            file.close();
         } catch (IOException e) {
-            System.out.println("File not found");
+            System.out.println("File doesn't found" + e);
         }
     }
 
     public List<User> readFromFile() {
-        List<User> users = new ArrayList<>();
         try {
-            Scanner scanner = new Scanner(data);
-            while (scanner.hasNextLine()) {
-                List<String> usersList = List.of(scanner.nextLine().split(","));
-                String fullName = usersList.get(0);
-                String userName = usersList.get(1);
-                String password = usersList.get(2);
-                User user = new User(fullName, userName, password);
-                users.add(user);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            Files.isReadable(Paths.get("data.txt"));
+            FileInputStream file = new FileInputStream(fileName);
+            ObjectInputStream stream = new ObjectInputStream(file);
+            users = (List<User>) stream.readObject();
+            stream.close();
+            file.close();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e.getMessage());
         }
         return users;
     }
