@@ -1,5 +1,6 @@
 package mainMenu;
 
+import menuActions.EditProfile;
 import utils.Display;
 import utils.FileHandler;
 import register.User;
@@ -11,12 +12,14 @@ public class MainMenuModel {
     private final List<User> users;
     private final int index;
     FileHandler fileHandler = new FileHandler();
-    private Scanner scanner;
+    EditProfile editProfile;
+    private final Scanner scanner;
 
     public MainMenuModel(List<User> users, int index) {
         this.users = users;
         this.index = index;
         scanner = new Scanner(System.in);
+        editProfile = new EditProfile(users, index);
     }
 
     public final List<String> menuOptions = List.of("View Balance", "Deposit Money", "Withdraw Money",
@@ -32,7 +35,7 @@ public class MainMenuModel {
             case 2 -> addMoney();
             case 3 -> withdrawMoney();
             case 4 -> System.out.println("Transfer money");
-            case 5 -> System.out.println("Edit Profile");
+            case 5 -> editProfile.updateProfile();
             case 6 -> exit();
             default -> throw new IndexOutOfBoundsException();
         }
@@ -52,7 +55,7 @@ public class MainMenuModel {
                 if (selectedInput > 0) {
                     balance = balance + selectedInput;
                     users.get(index).setBalance(balance);
-                    System.out.println("Your total balance is: " +balance+"SEK");
+                    System.out.println("Your total balance is: " + balance + "SEK");
                     break;
                 }
                 System.out.println("Enter the value of greater than zero");
@@ -73,7 +76,7 @@ public class MainMenuModel {
                 if (selectedInput > 0 && selectedInput < balance) {
                     balance = balance - selectedInput;
                     users.get(index).setBalance(balance);
-                    System.out.println("Your remaining balance is: " +balance+"SEK");
+                    System.out.println("Your remaining balance is: " + balance + "SEK");
                     break;
                 } else if (selectedInput <= 0) {
                     System.out.println("Enter a value greater than zero");
