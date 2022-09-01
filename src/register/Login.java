@@ -21,8 +21,8 @@ public class Login {
         users = getAllUsers();
         while (true) {
             boolean done;
-            String userName = readInputFromUser("Enter user Name: ", errorMessage("user name"));
-            String password = readInputFromUser("Enter password: ", errorMessage("password"));
+            String userName = readInputFromUser("Enter user Name: ");
+            String password = readInputFromUser("Enter password: ");
             String encryptedPassword = auth.encryptPassword(password);
             done = validateLoginDetails(userName, encryptedPassword);
             if (done) {
@@ -34,19 +34,9 @@ public class Login {
         new MainMenu(users, index);
     }
 
-    private String errorMessage(String value) {
-        String message = "Invalid Entry, " + value + " should not be empty or starts with space\nPlease enter valid " + value + ": ";
-        return message;
-    }
-
-    private String readInputFromUser(String message, String errorMessage) {
+    private String readInputFromUser(String message) {
         System.out.print(message);
         String input = scanner.nextLine();
-        while ((input.equals("") || (input.startsWith(" ")))) {
-            System.out.print(errorMessage);
-            input = scanner.nextLine();
-            input.trim();
-        }
         return input;
     }
 

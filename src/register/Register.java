@@ -1,5 +1,6 @@
 package register;
 
+import utils.Display;
 import utils.FileHandler;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Register {
         String fullName;
         while (true) {
             boolean done;
-            fullName = readInputFromUser("Enter Full Name: ", errorMessage("full name"));
+            fullName = readInputFromUser("Enter Full Name: ", Display.errorMessage("full name"));
             done = validateFullName(fullName);
             if (done) {
                 break;
@@ -30,22 +31,17 @@ public class Register {
         String userName;
         while (true) {
             boolean done;
-            userName = readInputFromUser("Enter User Name: ", errorMessage("user name"));
+            userName = readInputFromUser("Enter User Name: ", Display.errorMessage("user name"));
             done = validateUserName(userName);
             if (done) {
                 break;
             }
         }
-        String password = readInputFromUser("Enter password: ", errorMessage("password"));
+        String password = readInputFromUser("Enter password: ", Display.errorMessage("password"));
         String encryptedPassword = auth.encryptPassword(password);
         user.add(new User(fullName, userName, encryptedPassword));
         fileHandler.writeToFile(user);
         System.out.println("Registered successfully!");
-    }
-
-    private String errorMessage(String value) {
-        String message = "Invalid Entry, " + value + " should not be empty or starts with space\nPlease enter valid " + value + ": ";
-        return message;
     }
 
     private String readInputFromUser(String message, String errorMessage) {
