@@ -20,7 +20,7 @@ public class Display {
     }
 
     public static String errorMessage(String value) {
-        String message = "Invalid Entry, " + value + " should not be empty or starts with space\nPlease enter valid " + value + ": ";
+        String message = "Invalid Entry, " + value + " should not be empty nor starts with space nor ends with space\nPlease enter valid " + value + ": ";
         return message;
     }
 

@@ -1,5 +1,6 @@
 package register;
 
+import homeMenu.HomeMenu;
 import utils.Display;
 import utils.FileHandler;
 
@@ -42,15 +43,17 @@ public class Register {
         user.add(new User(fullName, userName, encryptedPassword));
         fileHandler.writeToFile(user);
         System.out.println("Registered successfully!");
+        System.out.print("Press any key and enter to login: ");
+        scanner.nextLine();
+        new HomeMenu();
     }
 
     private String readInputFromUser(String message, String errorMessage) {
         System.out.print(message);
         String input = scanner.nextLine();
-        while ((input.equals("") || (input.startsWith(" ")))) {
+        while ((input.equals("") || (input.startsWith(" ")) || (input.endsWith(" ")))) {
             System.out.print(errorMessage);
             input = scanner.nextLine();
-            input.trim();
         }
         return input;
     }

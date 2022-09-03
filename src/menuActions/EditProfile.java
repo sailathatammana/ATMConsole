@@ -34,13 +34,13 @@ public class EditProfile {
                 break;
             }
         }
-        if (!(userName.trim().equals(""))) {
+        if (!(userName.equals(""))) {
             users.get(index).setUserName(userName);
             System.out.println("Username has changed successfully!");
         }
         System.out.println("Password(Press enter if you do not want to change the password): ");
         String password = readInputFromUser("Enter password: ", Display.errorMessage("password"));
-        if (!(password.trim().equals(""))) {
+        if (!(password.equals(""))) {
             String encryptedPassword = auth.encryptPassword(password);
             users.get(index).setPassword(encryptedPassword);
             System.out.println("Password changed successfully!");
@@ -52,10 +52,9 @@ public class EditProfile {
     private String readInputFromUser(String message, String errorMessage) {
         System.out.print(message);
         String input = scanner.nextLine();
-        while (((input.startsWith(" ")))) {
+        while ((input.startsWith(" ")) || (input.endsWith(" "))) {
             System.out.print(errorMessage);
             input = scanner.nextLine();
-            input.trim();
         }
         return input;
     }
