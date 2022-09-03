@@ -1,6 +1,7 @@
 package mainMenu;
 
 import menuActions.EditProfile;
+import menuActions.Transfer;
 import utils.Display;
 import utils.FileHandler;
 import register.User;
@@ -13,6 +14,7 @@ public class MainMenuModel {
     private final int index;
     FileHandler fileHandler = new FileHandler();
     EditProfile editProfile;
+    Transfer transfer;
     private final Scanner scanner;
 
     public MainMenuModel(List<User> users, int index) {
@@ -20,6 +22,7 @@ public class MainMenuModel {
         this.index = index;
         scanner = new Scanner(System.in);
         editProfile = new EditProfile(users, index);
+        transfer = new Transfer(users,index);
     }
 
     public final List<String> menuOptions = List.of("View Balance", "Deposit Money", "Withdraw Money",
@@ -34,7 +37,7 @@ public class MainMenuModel {
             case 1 -> viewBalance();
             case 2 -> addMoney();
             case 3 -> withdrawMoney();
-            case 4 -> System.out.println("Transfer money");
+            case 4 -> transfer.sendMoney();
             case 5 -> editProfile.updateProfile();
             case 6 -> exit();
             default -> throw new IndexOutOfBoundsException();
