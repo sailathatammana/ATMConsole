@@ -46,7 +46,7 @@ public class EditProfile {
             System.out.println("Password changed successfully!");
         }
         fileHandler.writeToFile(users);
-        System.exit(1);
+        Display.returnMainMenu();
     }
 
     private String readInputFromUser(String message, String errorMessage) {

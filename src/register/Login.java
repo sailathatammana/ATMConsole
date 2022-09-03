@@ -31,7 +31,9 @@ public class Login {
                 System.out.println("Invalid Credentials");
             }
         }
-        new MainMenu(users, index);
+        while (true) {
+            new MainMenu(users, index);
+        }
     }
 
     private String readInputFromUser(String message) {

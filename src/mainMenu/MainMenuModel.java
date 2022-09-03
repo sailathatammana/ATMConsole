@@ -22,7 +22,7 @@ public class MainMenuModel {
         this.index = index;
         scanner = new Scanner(System.in);
         editProfile = new EditProfile(users, index);
-        transfer = new Transfer(users,index);
+        transfer = new Transfer(users, index);
     }
 
     public final List<String> menuOptions = List.of("View Balance", "Deposit Money", "Withdraw Money",
@@ -39,13 +39,14 @@ public class MainMenuModel {
             case 3 -> withdrawMoney();
             case 4 -> transfer.sendMoney();
             case 5 -> editProfile.updateProfile();
-            case 6 -> exit();
+            case 6 -> Display.exit();
             default -> throw new IndexOutOfBoundsException();
         }
     }
 
     private void viewBalance() {
         System.out.println("Balance is: " + users.get(index).getBalance() + "SEK");
+        Display.returnMainMenu();
     }
 
     private void addMoney() {
@@ -67,6 +68,7 @@ public class MainMenuModel {
             }
         }
         fileHandler.writeToFile(users);
+        Display.returnMainMenu();
     }
 
     private void withdrawMoney() {
@@ -91,9 +93,6 @@ public class MainMenuModel {
             }
         }
         fileHandler.writeToFile(users);
-    }
-
-    private void exit() {
-        System.exit(1);
+        Display.returnMainMenu();
     }
 }

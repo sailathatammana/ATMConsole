@@ -60,6 +60,7 @@ public class Transfer {
             }
         }
         fileHandler.writeToFile(users);
+        Display.returnMainMenu();
     }
 
     private String readInputFromUser(String message) {
