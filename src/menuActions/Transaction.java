@@ -1,6 +1,5 @@
 package menuActions;
 
-import register.Authentication;
 import register.User;
 import utils.Display;
 import utils.FileHandler;
@@ -14,18 +13,14 @@ public class Transaction {
     private final int index;
     private int userId;
     private float balance;
-    Authentication auth;
     FileHandler fileHandler;
-    ValidateHelper helper;
     private final Scanner scanner;
 
     public Transaction(List<User> users, int index) {
         this.users = users;
         this.index = index;
         this.balance = users.get(index).getBalance();
-        auth = new Authentication();
         fileHandler = new FileHandler();
-        helper = new ValidateHelper();
         scanner = new Scanner(System.in);
     }
 
@@ -58,7 +53,7 @@ public class Transaction {
                 System.out.print("Enter amount to withdraw: ");
                 String input = scanner.nextLine();
                 float selectedInput = Float.parseFloat(input);
-                if (helper.validateUserAmount(selectedInput, balance, "withdraw")) {
+                if (ValidateHelper.validateUserAmount(selectedInput, balance, "withdraw")) {
                     balance = balance - selectedInput;
                     users.get(index).setBalance(balance);
                     System.out.println("Your remaining the balance is: " + balance + "SEK");
@@ -106,7 +101,7 @@ public class Transaction {
                 System.out.print("Enter amount to transfer: ");
                 String input = scanner.nextLine();
                 float selectedInput = Float.parseFloat(input);
-                if (helper.validateUserAmount(selectedInput, balance, "transfer")) {
+                if (ValidateHelper.validateUserAmount(selectedInput, balance, "transfer")) {
                     balance1 = balance1 + selectedInput;
                     balance = balance - selectedInput;
                     users.get(userId).setBalance(balance1);

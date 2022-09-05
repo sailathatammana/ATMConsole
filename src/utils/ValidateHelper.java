@@ -5,7 +5,7 @@ import register.User;
 import java.util.List;
 
 public class ValidateHelper {
-    public boolean validateUserAmount(double selectedInput, double balance, String value) {
+    public static boolean validateUserAmount(double selectedInput, double balance, String value) {
         if (selectedInput > 0 && selectedInput < balance) {
             return true;
         } else if (selectedInput <= 0) {
