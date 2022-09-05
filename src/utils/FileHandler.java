@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileHandler {
-    private List<User> users = new ArrayList<User>();
+    private List<User> users = new ArrayList<>();
     private final String fileName = "data.txt";
 
     public void writeToFile(List<User> user) {
