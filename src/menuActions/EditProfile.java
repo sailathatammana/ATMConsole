@@ -24,6 +24,7 @@ public class EditProfile {
     }
 
     public void updateProfile() {
+        Display.clearScreen();
         String userName;
         while (true) {
             boolean done;

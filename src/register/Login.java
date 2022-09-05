@@ -1,6 +1,7 @@
 package register;
 
 import mainMenu.MainMenu;
+import utils.Display;
 import utils.FileHandler;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class Login {
 
     public void LoginUser() {
         users = getAllUsers();
+        Display.clearScreen();
         while (true) {
             boolean done;
             String userName = readInputFromUser("Enter user Name: ");

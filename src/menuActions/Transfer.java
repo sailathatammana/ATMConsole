@@ -25,6 +25,7 @@ public class Transfer {
     }
 
     public void sendMoney() {
+        Display.clearScreen();
         boolean done;
         double balance = users.get(index).getBalance();
         String userName;

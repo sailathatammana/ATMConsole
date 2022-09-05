@@ -5,6 +5,25 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Display {
+
+    private static void welcomeMsg() {
+        System.out.println("Welcome to ATM Console.\n");
+    }
+
+    public static void clearScreen() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                Display.welcomeMsg();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+                Display.welcomeMsg();
+            }
+        } catch (Exception E) {
+            System.out.println(E);
+        }
+    }
+
     public static void chooseOption() {
         System.out.print("Please choose an option: ");
     }
@@ -40,7 +59,7 @@ public class Display {
         return Objects.equals(input.toLowerCase(), "q");
     }
 
-    public static void exit(){
+    public static void exit() {
         System.out.println("Thank you for using the ATM Console!");
         System.exit(1);
     }

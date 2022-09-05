@@ -45,11 +45,13 @@ public class MainMenuModel {
     }
 
     private void viewBalance() {
+        Display.clearScreen();
         System.out.println("Balance is: " + users.get(index).getBalance() + "SEK");
         Display.returnMainMenu();
     }
 
     private void addMoney() {
+        Display.clearScreen();
         double balance = users.get(index).getBalance();
         while (true) {
             try {
@@ -72,6 +74,7 @@ public class MainMenuModel {
     }
 
     private void withdrawMoney() {
+        Display.clearScreen();
         double balance = users.get(index).getBalance();
         while (true) {
             try {

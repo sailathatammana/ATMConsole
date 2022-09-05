@@ -20,6 +20,7 @@ public class Register {
 
     public void adduser() {
         user = getAllUsers();
+        Display.clearScreen();
         String fullName;
         while (true) {
             boolean done;
