@@ -13,7 +13,7 @@ public class Transaction {
     private final List<User> users;
     private final int index;
     private int userId;
-    private double balance;
+    private float balance;
     Authentication auth;
     FileHandler fileHandler;
     ValidateHelper helper;
@@ -35,7 +35,7 @@ public class Transaction {
             try {
                 System.out.print("Enter amount to add: ");
                 String input = scanner.nextLine();
-                double selectedInput = Double.parseDouble(input);
+                float selectedInput = Float.parseFloat(input);
                 if (selectedInput > 0) {
                     balance = balance + selectedInput;
                     users.get(index).setBalance(balance);
@@ -57,7 +57,7 @@ public class Transaction {
             try {
                 System.out.print("Enter amount to withdraw: ");
                 String input = scanner.nextLine();
-                double selectedInput = Double.parseDouble(input);
+                float selectedInput = Float.parseFloat(input);
                 if (helper.validateUserAmount(selectedInput, balance, "withdraw")) {
                     balance = balance - selectedInput;
                     users.get(index).setBalance(balance);
@@ -100,12 +100,12 @@ public class Transaction {
     }
 
     private void readAmount() {
-        double balance1 = users.get(userId).getBalance();
+        float balance1 = users.get(userId).getBalance();
         while (true) {
             try {
                 System.out.print("Enter amount to transfer: ");
                 String input = scanner.nextLine();
-                double selectedInput = Double.parseDouble(input);
+                float selectedInput = Float.parseFloat(input);
                 if (helper.validateUserAmount(selectedInput, balance, "transfer")) {
                     balance1 = balance1 + selectedInput;
                     balance = balance - selectedInput;

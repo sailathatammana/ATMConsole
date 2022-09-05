@@ -3,10 +3,10 @@ package register;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private String fullName;
+    private final String fullName;
     private String userName;
     private String password;
-    private double balance;
+    private float balance;
 
     public User(String fullName, String userName, String password) {
         this.fullName = fullName;
@@ -16,10 +16,6 @@ public class User implements Serializable {
 
     public String getFullName() {
         return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getUserName() {
@@ -38,11 +34,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public double getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 }
