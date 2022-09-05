@@ -5,10 +5,8 @@ import utils.Display;
 import utils.FileHandler;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class Login {
-    Scanner scanner = new Scanner(System.in);
     Authentication auth = new Authentication();
     FileHandler fileHandler = new FileHandler();
     private List<User> users;
@@ -23,8 +21,8 @@ public class Login {
         Display.clearScreen();
         while (true) {
             boolean done;
-            String userName = readInputFromUser("Enter user Name: ");
-            String password = readInputFromUser("Enter password: ");
+            String userName = Display.readInputFromUser("Enter user Name: ");
+            String password = Display.readInputFromUser("Enter password: ");
             String encryptedPassword = auth.encryptPassword(password);
             done = validateLoginDetails(userName, encryptedPassword);
             if (done) {
@@ -36,12 +34,6 @@ public class Login {
         while (true) {
             new MainMenu(users, index);
         }
-    }
-
-    private String readInputFromUser(String message) {
-        System.out.print(message);
-        String input = scanner.nextLine();
-        return input;
     }
 
     private boolean validateLoginDetails(String userName, String encryptedPassword) {

@@ -1,28 +1,22 @@
 package mainMenu;
 
+import menuActions.BalanceInquiry;
+import menuActions.Transaction;
 import menuActions.EditProfile;
-import menuActions.Transfer;
 import utils.Display;
-import utils.FileHandler;
 import register.User;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class MainMenuModel {
-    private final List<User> users;
-    private final int index;
-    FileHandler fileHandler = new FileHandler();
+    BalanceInquiry balance;
+    Transaction transaction;
     EditProfile editProfile;
-    Transfer transfer;
-    private final Scanner scanner;
 
     public MainMenuModel(List<User> users, int index) {
-        this.users = users;
-        this.index = index;
-        scanner = new Scanner(System.in);
+        balance = new BalanceInquiry(users, index);
+        transaction = new Transaction(users, index);
         editProfile = new EditProfile(users, index);
-        transfer = new Transfer(users, index);
     }
 
     public final List<String> menuOptions = List.of("View Balance", "Deposit Money", "Withdraw Money",
@@ -34,68 +28,13 @@ public class MainMenuModel {
 
     public void handleOption(int selectedOption) throws IndexOutOfBoundsException {
         switch (selectedOption) {
-            case 1 -> viewBalance();
-            case 2 -> addMoney();
-            case 3 -> withdrawMoney();
-            case 4 -> transfer.sendMoney();
+            case 1 -> balance.viewBalance();
+            case 2 -> transaction.addMoney();
+            case 3 -> transaction.withdrawMoney();
+            case 4 -> transaction.transferMoney();
             case 5 -> editProfile.updateProfile();
             case 6 -> Display.exit();
             default -> throw new IndexOutOfBoundsException();
         }
-    }
-
-    private void viewBalance() {
-        Display.clearScreen();
-        System.out.println("Balance is: " + users.get(index).getBalance() + "SEK");
-        Display.returnMainMenu();
-    }
-
-    private void addMoney() {
-        Display.clearScreen();
-        double balance = users.get(index).getBalance();
-        while (true) {
-            try {
-                System.out.print("Enter amount to add: ");
-                String input = scanner.nextLine();
-                double selectedInput = Double.parseDouble(input);
-                if (selectedInput > 0) {
-                    balance = balance + selectedInput;
-                    users.get(index).setBalance(balance);
-                    System.out.println("Your total balance is: " + balance + "SEK");
-                    break;
-                }
-                System.out.println("Enter the value of greater than zero");
-            } catch (NumberFormatException e) {
-                Display.printInvalidOption();
-            }
-        }
-        fileHandler.writeToFile(users);
-        Display.returnMainMenu();
-    }
-
-    private void withdrawMoney() {
-        Display.clearScreen();
-        double balance = users.get(index).getBalance();
-        while (true) {
-            try {
-                System.out.print("Enter amount to withdraw: ");
-                String input = scanner.nextLine();
-                double selectedInput = Double.parseDouble(input);
-                if (selectedInput > 0 && selectedInput < balance) {
-                    balance = balance - selectedInput;
-                    users.get(index).setBalance(balance);
-                    System.out.println("Your remaining balance is: " + balance + "SEK");
-                    break;
-                } else if (selectedInput <= 0) {
-                    System.out.println("Enter a value greater than zero");
-                } else {
-                    System.out.println("Insufficient balance to withdraw");
-                }
-            } catch (NumberFormatException e) {
-                Display.printInvalidOption();
-            }
-        }
-        fileHandler.writeToFile(users);
-        Display.returnMainMenu();
     }
 }

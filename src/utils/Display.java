@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Display {
+    static Scanner scanner = new Scanner(System.in);
 
     private static void welcomeMsg() {
         System.out.println("Welcome to ATM Console.\n");
@@ -45,7 +46,6 @@ public class Display {
 
     public static void returnMainMenu() {
         System.out.print("Press `q` to return to main menu: ");
-        Scanner scanner = new Scanner(System.in);
         while ((true)) {
             String option = scanner.nextLine();
             if (checkInput(option)) return;
@@ -62,5 +62,10 @@ public class Display {
     public static void exit() {
         System.out.println("Thank you for using the ATM Console!");
         System.exit(1);
+    }
+
+    public static String readInputFromUser(String message) {
+        System.out.print(message);
+        return scanner.nextLine();
     }
 }
