@@ -10,7 +10,7 @@ public class Authentication {
         String hashValue = "";
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte hashByte[] = md.digest(input.getBytes());
+            byte[] hashByte = md.digest(input.getBytes());
             BigInteger bigValue = new BigInteger(1, hashByte);
             hashValue = bigValue.toString();
         } catch (NoSuchAlgorithmException e) {

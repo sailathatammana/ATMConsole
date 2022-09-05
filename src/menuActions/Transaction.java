@@ -77,7 +77,7 @@ public class Transaction {
         boolean done;
         while (true) {
             String userName = Display.readInputFromUser("Enter user name: ");
-            done = validateUserName(userName);
+            done = validateUser(userName);
             if (done) {
                 readAmount();
                 break;
@@ -89,7 +89,7 @@ public class Transaction {
         Display.returnMainMenu();
     }
 
-    private boolean validateUserName(String userName) {
+    private boolean validateUser(String userName) {
         for (User userData : users) {
             if ((userData.getUserName().equals(userName))) {
                 userId = users.indexOf(userData);

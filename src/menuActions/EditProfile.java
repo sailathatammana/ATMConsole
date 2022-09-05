@@ -4,6 +4,7 @@ import register.Authentication;
 import register.User;
 import utils.Display;
 import utils.FileHandler;
+import utils.ValidateHelper;
 
 import java.util.List;
 import java.util.Scanner;
@@ -26,11 +27,11 @@ public class EditProfile {
     public void updateProfile() {
         Display.clearScreen();
         String userName;
+        System.out.println("user name(Press enter if you do not want to change the user name): ");
         while (true) {
             boolean done;
-            System.out.println("user name(Press enter if you do not want to change the user name): ");
             userName = readInputFromUser("Enter User Name: ", Display.errorMessage("user name"));
-            done = validateUserName(userName);
+            done = ValidateHelper.validateUserName(userName, users);
             if (done) {
                 break;
             }
@@ -58,15 +59,5 @@ public class EditProfile {
             input = scanner.nextLine();
         }
         return input;
-    }
-
-    private boolean validateUserName(String input) {
-        for (User userData : users) {
-            if ((userData.getUserName().equals(input))) {
-                System.out.println("User name already exists.");
-                return false;
-            }
-        }
-        return true;
     }
 }
