@@ -26,6 +26,13 @@ public class EditProfile {
 
     public void updateProfile() {
         Display.clearScreen();
+        updateUserName();
+        updatePassword();
+        fileHandler.writeToFile(users);
+        Display.returnMainMenu();
+    }
+
+    private void updateUserName() {
         String userName;
         System.out.println("user name(Press enter if you do not want to change the user name): ");
         while (true) {
@@ -40,6 +47,9 @@ public class EditProfile {
             users.get(index).setUserName(userName);
             System.out.println("Username has changed successfully!");
         }
+    }
+
+    private void updatePassword() {
         System.out.println("Password(Press enter if you do not want to change the password): ");
         String password = readInputFromUser("Enter password: ", Display.errorMessage("password"));
         if (!(password.equals(""))) {
@@ -47,8 +57,6 @@ public class EditProfile {
             users.get(index).setPassword(encryptedPassword);
             System.out.println("Password changed successfully!");
         }
-        fileHandler.writeToFile(users);
-        Display.returnMainMenu();
     }
 
     private String readInputFromUser(String message, String errorMessage) {
