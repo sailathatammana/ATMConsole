@@ -12,14 +12,14 @@ public class Transaction {
     private final List<User> users;
     private final int index;
     private int userId;
-    private float balance;
+    private float senderBalance;
     FileHandler fileHandler;
     private final Scanner scanner;
 
     public Transaction(List<User> users, int index) {
         this.users = users;
         this.index = index;
-        this.balance = users.get(index).getBalance();
+        this.senderBalance = users.get(index).getBalance();
         fileHandler = new FileHandler();
         scanner = new Scanner(System.in);
     }
@@ -32,9 +32,9 @@ public class Transaction {
                 String input = scanner.nextLine();
                 float selectedInput = Float.parseFloat(input);
                 if (selectedInput > 0) {
-                    balance = balance + selectedInput;
-                    users.get(index).setBalance(balance);
-                    System.out.println("Your updated total balance is: " + balance + "SEK");
+                    senderBalance = senderBalance + selectedInput;
+                    users.get(index).setBalance(senderBalance);
+                    System.out.println("Your updated total balance is: " + senderBalance + "SEK");
                     break;
                 }
                 System.out.println("Enter the value of greater than zero");
@@ -53,10 +53,10 @@ public class Transaction {
                 System.out.print("Enter amount to withdraw: ");
                 String input = scanner.nextLine();
                 float selectedInput = Float.parseFloat(input);
-                if (ValidateHelper.validateUserAmount(selectedInput, balance, "withdraw")) {
-                    balance = balance - selectedInput;
-                    users.get(index).setBalance(balance);
-                    System.out.println("Your remaining the balance is: " + balance + "SEK");
+                if (ValidateHelper.validateUserAmount(selectedInput, senderBalance, "withdraw")) {
+                    senderBalance = senderBalance - selectedInput;
+                    users.get(index).setBalance(senderBalance);
+                    System.out.println("Your remaining the balance is: " + senderBalance + "SEK");
                     break;
                 }
             } catch (NumberFormatException e) {
@@ -95,18 +95,18 @@ public class Transaction {
     }
 
     private void readAmount() {
-        float balance1 = users.get(userId).getBalance();
+        float receiverBalance = users.get(userId).getBalance();
         while (true) {
             try {
                 System.out.print("Enter amount to transfer: ");
                 String input = scanner.nextLine();
                 float selectedInput = Float.parseFloat(input);
-                if (ValidateHelper.validateUserAmount(selectedInput, balance, "transfer")) {
-                    balance1 = balance1 + selectedInput;
-                    balance = balance - selectedInput;
-                    users.get(userId).setBalance(balance1);
-                    users.get(index).setBalance(balance);
-                    System.out.println("Your remaining balance is: " + balance + "SEK");
+                if (ValidateHelper.validateUserAmount(selectedInput, senderBalance, "transfer")) {
+                    receiverBalance = receiverBalance + selectedInput;
+                    senderBalance = senderBalance - selectedInput;
+                    users.get(userId).setBalance(receiverBalance);
+                    users.get(index).setBalance(senderBalance);
+                    System.out.println("Your remaining balance is: " + senderBalance + "SEK");
                     break;
                 }
             } catch (NumberFormatException e) {
