@@ -21,6 +21,19 @@ public class Register {
     public void adduser() {
         List<User> users = getAllUsers();
         Display.clearScreen();
+        String fullName = getFullName(users);
+        String userName = getUserName(users);
+        String encryptedPassword = getPassword();
+        users.add(new User(fullName, userName, encryptedPassword));
+        fileHandler.writeToFile(users);
+        System.out.println("Registered successfully!");
+        System.out.print("Press any key and enter to login: ");
+        scanner.nextLine();
+        new HomeMenu();
+    }
+
+
+    private String getFullName(List<User> users) {
         String fullName;
         while (true) {
             boolean done;
@@ -30,6 +43,10 @@ public class Register {
                 break;
             }
         }
+        return fullName;
+    }
+
+    private String getUserName(List<User> users) {
         String userName;
         while (true) {
             boolean done;
@@ -39,14 +56,13 @@ public class Register {
                 break;
             }
         }
+        return userName;
+    }
+
+    private String getPassword() {
         String password = readInputFromUser("Enter password: ", Display.errorMessage("password"));
         String encryptedPassword = auth.encryptPassword(password);
-        users.add(new User(fullName, userName, encryptedPassword));
-        fileHandler.writeToFile(users);
-        System.out.println("Registered successfully!");
-        System.out.print("Press any key and enter to login: ");
-        scanner.nextLine();
-        new HomeMenu();
+        return encryptedPassword;
     }
 
     private String readInputFromUser(String message, String errorMessage) {
