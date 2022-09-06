@@ -45,13 +45,13 @@ A spreadsheet with the information related to the organization of the project. I
 
 A low detail diagram to visualize how the application will work.
 
-[Use case diagram]()
+[Use case diagram](https://bit.ly/3KRBBZv)
 
 ### 2.3 Sequence diagram
 
-A low detail diagram to visualize how the application will work.
+A sequence detail diagram to visualize how the application will work step by step.
 
-[Sequence diagram]()
+[Sequence diagram](https://bit.ly/3RWrS6L)
 
 ### 2.4 Class diagrams
 
