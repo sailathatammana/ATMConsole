@@ -12,6 +12,7 @@ public class Register {
     Scanner scanner = new Scanner(System.in);
     Authentication auth = new Authentication();
     FileHandler fileHandler = new FileHandler();
+    ValidateHelper validateHelper = new ValidateHelper();
 
     private List<User> getAllUsers() {
         return fileHandler.readFromFile();
@@ -24,7 +25,7 @@ public class Register {
         while (true) {
             boolean done;
             fullName = readInputFromUser("Enter Full Name: ", Display.errorMessage("full name"));
-            done = ValidateHelper.validateFullName(fullName, users);
+            done = validateHelper.validateFullName(fullName, users);
             if (done) {
                 break;
             }
@@ -33,7 +34,7 @@ public class Register {
         while (true) {
             boolean done;
             userName = readInputFromUser("Enter User Name: ", Display.errorMessage("user name"));
-            done = ValidateHelper.validateUserName(userName, users);
+            done = validateHelper.validateUserName(userName, users);
             if (done) {
                 break;
             }

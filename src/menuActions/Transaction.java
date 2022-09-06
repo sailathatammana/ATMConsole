@@ -14,6 +14,7 @@ public class Transaction {
     private int userId;
     private float senderBalance;
     FileHandler fileHandler;
+    ValidateHelper validateHelper;
     private final Scanner scanner;
 
     public Transaction(List<User> users, int index) {
@@ -21,6 +22,7 @@ public class Transaction {
         this.index = index;
         this.senderBalance = users.get(index).getBalance();
         fileHandler = new FileHandler();
+        validateHelper = new ValidateHelper();
         scanner = new Scanner(System.in);
     }
 
@@ -53,7 +55,7 @@ public class Transaction {
                 System.out.print("Enter amount to withdraw: ");
                 String input = scanner.nextLine();
                 float selectedInput = Float.parseFloat(input);
-                if (ValidateHelper.validateUserAmount(selectedInput, senderBalance, "withdraw")) {
+                if (validateHelper.validateUserAmount(selectedInput, senderBalance, "withdraw")) {
                     senderBalance = senderBalance - selectedInput;
                     users.get(index).setBalance(senderBalance);
                     System.out.println("Your remaining the balance is: " + senderBalance + "SEK");
@@ -101,7 +103,7 @@ public class Transaction {
                 System.out.print("Enter amount to transfer: ");
                 String input = scanner.nextLine();
                 float selectedInput = Float.parseFloat(input);
-                if (ValidateHelper.validateUserAmount(selectedInput, senderBalance, "transfer")) {
+                if (validateHelper.validateUserAmount(selectedInput, senderBalance, "transfer")) {
                     receiverBalance = receiverBalance + selectedInput;
                     senderBalance = senderBalance - selectedInput;
                     users.get(userId).setBalance(receiverBalance);

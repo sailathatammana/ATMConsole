@@ -14,6 +14,7 @@ public class EditProfile {
     private final int index;
     Authentication auth;
     FileHandler fileHandler;
+    ValidateHelper validateHelper;
     private final Scanner scanner;
 
     public EditProfile(List<User> users, int index) {
@@ -22,6 +23,7 @@ public class EditProfile {
         scanner = new Scanner(System.in);
         auth = new Authentication();
         fileHandler = new FileHandler();
+        validateHelper = new ValidateHelper();
     }
 
     public void updateProfile() {
@@ -38,7 +40,7 @@ public class EditProfile {
         while (true) {
             boolean done;
             userName = readInputFromUser("Enter User Name: ", Display.errorMessage("user name"));
-            done = ValidateHelper.validateUserName(userName, users);
+            done = validateHelper.validateUserName(userName, users);
             if (done) {
                 break;
             }

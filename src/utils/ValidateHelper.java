@@ -5,7 +5,7 @@ import register.User;
 import java.util.List;
 
 public class ValidateHelper {
-    public static boolean validateUserAmount(double selectedInput, double balance, String value) {
+    public boolean validateUserAmount(double selectedInput, double balance, String value) {
         if (selectedInput > 0 && selectedInput < balance) {
             return true;
         } else if (selectedInput <= 0) {
@@ -16,7 +16,7 @@ public class ValidateHelper {
         return false;
     }
 
-    public static boolean validateFullName(String input,List<User> users) {
+    public boolean validateFullName(String input, List<User> users) {
         for (User userData : users) {
             if ((userData.getFullName().equals(input))) {
                 System.out.println("Full name already exists.");
@@ -26,7 +26,7 @@ public class ValidateHelper {
         return true;
     }
 
-    public static boolean validateUserName(String input, List<User> users) {
+    public boolean validateUserName(String input, List<User> users) {
         for (User userData : users) {
             if ((userData.getUserName().equals(input))) {
                 System.out.println("User name already exists.");
