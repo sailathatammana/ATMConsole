@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Authentication {
+public class Encrypt {
 
     public String encryptPassword(String input) {
         String hashValue = "";

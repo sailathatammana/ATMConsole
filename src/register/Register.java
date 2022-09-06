@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Register {
     Scanner scanner = new Scanner(System.in);
-    Authentication auth = new Authentication();
+    Encrypt auth = new Encrypt();
     FileHandler fileHandler = new FileHandler();
     ValidateHelper validateHelper = new ValidateHelper();
 

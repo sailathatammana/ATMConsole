@@ -1,6 +1,6 @@
 package menuActions;
 
-import register.Authentication;
+import register.Encrypt;
 import register.User;
 import utils.Display;
 import utils.FileHandler;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class EditProfile {
     private final List<User> users;
     private final int index;
-    Authentication auth;
+    Encrypt auth;
     FileHandler fileHandler;
     ValidateHelper validateHelper;
     private final Scanner scanner;
@@ -21,7 +21,7 @@ public class EditProfile {
         this.users = users;
         this.index = index;
         scanner = new Scanner(System.in);
-        auth = new Authentication();
+        auth = new Encrypt();
         fileHandler = new FileHandler();
         validateHelper = new ValidateHelper();
     }

@@ -7,7 +7,7 @@ import utils.FileHandler;
 import java.util.List;
 
 public class Login {
-    Authentication auth = new Authentication();
+    Encrypt auth = new Encrypt();
     FileHandler fileHandler = new FileHandler();
     private List<User> users;
     private int index;
