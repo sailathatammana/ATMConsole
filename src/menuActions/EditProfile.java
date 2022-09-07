@@ -1,9 +1,9 @@
 package menuActions;
 
-import register.Encrypt;
-import register.User;
+import account.Encrypt;
 import utils.Display;
 import utils.FileHandler;
+import utils.User;
 import utils.ValidateHelper;
 
 import java.util.List;

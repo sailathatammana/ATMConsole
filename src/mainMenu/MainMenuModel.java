@@ -4,7 +4,7 @@ import menuActions.BalanceInquiry;
 import menuActions.Transaction;
 import menuActions.EditProfile;
 import utils.Display;
-import register.User;
+import utils.User;
 
 import java.util.List;
 

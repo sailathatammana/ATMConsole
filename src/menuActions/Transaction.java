@@ -1,8 +1,8 @@
 package menuActions;
 
-import register.User;
 import utils.Display;
 import utils.FileHandler;
+import utils.User;
 import utils.ValidateHelper;
 
 import java.util.List;
@@ -73,8 +73,8 @@ public class Transaction {
         Display.clearScreen();
         boolean done;
         while (true) {
-            String userName = Display.readInputFromUser("Enter user name: ");
-            done = validateUser(userName);
+            String fullName = Display.readInputFromUser("Enter user full name: ");
+            done = validateUser(fullName);
             if (done) {
                 readAmount();
                 break;
@@ -86,9 +86,9 @@ public class Transaction {
         Display.returnMainMenu();
     }
 
-    private boolean validateUser(String userName) {
+    private boolean validateUser(String fullName) {
         for (User userData : users) {
-            if ((userData.getUserName().equals(userName))) {
+            if ((userData.getFullName().equals(fullName))) {
                 userId = users.indexOf(userData);
                 return true;
             }

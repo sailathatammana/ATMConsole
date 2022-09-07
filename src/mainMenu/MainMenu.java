@@ -1,6 +1,6 @@
 package mainMenu;
 
-import register.User;
+import utils.User;
 
 import java.util.List;
 

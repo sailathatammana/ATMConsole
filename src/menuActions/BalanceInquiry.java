@@ -1,7 +1,7 @@
 package menuActions;
 
-import register.User;
 import utils.Display;
+import utils.User;
 
 import java.util.List;
 

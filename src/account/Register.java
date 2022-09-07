@@ -1,8 +1,9 @@
-package register;
+package account;
 
 import homeMenu.HomeMenu;
 import utils.Display;
 import utils.FileHandler;
+import utils.User;
 import utils.ValidateHelper;
 
 import java.util.List;

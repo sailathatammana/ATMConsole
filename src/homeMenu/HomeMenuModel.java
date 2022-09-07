@@ -1,7 +1,7 @@
 package homeMenu;
 
-import register.Register;
-import register.Login;
+import account.Login;
+import account.Register;
 import utils.Display;
 
 import java.util.List;

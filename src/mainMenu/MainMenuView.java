@@ -1,7 +1,7 @@
 package mainMenu;
 
 import utils.Display;
-import register.User;
+import utils.User;
 
 import java.util.List;
 
