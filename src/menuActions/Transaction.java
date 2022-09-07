@@ -29,9 +29,10 @@ public class Transaction {
     public void addMoney() {
         Display.clearScreen();
         while (true) {
+            Display.printHeader("add");
+            String input = scanner.nextLine();
             try {
-                System.out.print("Enter amount to add: ");
-                String input = scanner.nextLine();
+                if (Display.checkInput(input)) return;
                 float selectedInput = Float.parseFloat(input);
                 if (selectedInput > 0) {
                     senderBalance = senderBalance + selectedInput;
@@ -52,9 +53,10 @@ public class Transaction {
         Display.clearScreen();
         while (true) {
             if (validateBalance("withdraw")) break;
+            Display.printHeader("withdraw");
+            String input = scanner.nextLine();
             try {
-                System.out.print("Enter amount to withdraw: ");
-                String input = scanner.nextLine();
+                if (Display.checkInput(input)) return;
                 float selectedInput = Float.parseFloat(input);
                 if (validateHelper.validateUserAmount(selectedInput, senderBalance, "withdraw")) {
                     senderBalance = senderBalance - selectedInput;
@@ -74,10 +76,12 @@ public class Transaction {
         Display.clearScreen();
         boolean done;
         while (true) {
-            if (validateUsers()) break;
+            if (listHasUsers()) break;
             if (validateBalance("transfer")) break;
-            String fullName = Display.readInputFromUser("Enter user full name: ");
-            done = validateUser(fullName);
+            System.out.print("Enter user full name/Enter `q` to go back to main menu\nInput:  ");
+            String input = scanner.nextLine();
+            if (Display.checkInput(input)) return;
+            done = validateUser(input);
             if (done) {
                 readAmount();
                 break;
@@ -89,7 +93,7 @@ public class Transaction {
         Display.returnMainMenu();
     }
 
-    private boolean validateUsers() {
+    private boolean listHasUsers() {
         if (users.size() < 2) {
             System.out.println("No register user available to transfer money");
             return true;

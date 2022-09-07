@@ -33,7 +33,6 @@ public class Register {
         new HomeMenu();
     }
 
-
     private String getFullName(List<User> users) {
         String fullName;
         while (true) {

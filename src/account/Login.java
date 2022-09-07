@@ -7,12 +7,14 @@ import utils.FileHandler;
 import utils.User;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Login {
     Encrypt auth = new Encrypt();
     FileHandler fileHandler = new FileHandler();
     private List<User> users;
     private int index;
+    Scanner scanner = new Scanner(System.in);
 
     private List<User> getAllUsers() {
         return fileHandler.readFromFile();
@@ -24,8 +26,8 @@ public class Login {
         while (true) {
             boolean done;
             if (listHasUsers()) break;
-            String userName = Display.readInputFromUser("Enter user Name: ");
-            String password = Display.readInputFromUser("Enter password: ");
+            String userName = readInputFromUser("Enter user Name: ");
+            String password = readInputFromUser("Enter password: ");
             String encryptedPassword = auth.encryptPassword(password);
             done = validateLoginDetails(userName, encryptedPassword);
             if (done) {
@@ -40,13 +42,18 @@ public class Login {
     }
 
     private boolean listHasUsers() {
-        if(users.size()==0){
+        if (users.size() == 0) {
             System.out.println("No register user available to login");
             Display.returnMainMenu();
             new HomeMenu();
             return true;
         }
         return false;
+    }
+
+    private String readInputFromUser(String message) {
+        System.out.print(message);
+        return scanner.nextLine();
     }
 
     private boolean validateLoginDetails(String userName, String encryptedPassword) {

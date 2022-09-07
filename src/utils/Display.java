@@ -55,7 +55,7 @@ public class Display {
         }
     }
 
-    private static boolean checkInput(String input) {
+    public static boolean checkInput(String input) {
         return Objects.equals(input.toLowerCase(), "q");
     }
 
@@ -64,8 +64,7 @@ public class Display {
         System.exit(1);
     }
 
-    public static String readInputFromUser(String message) {
-        System.out.print(message);
-        return scanner.nextLine();
+    public static void printHeader(String value) {
+        System.out.print("Enter amount to " + value + "/Enter `q` to go back to main menu\nInput: ");
     }
 }
