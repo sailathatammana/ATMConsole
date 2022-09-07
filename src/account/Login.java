@@ -1,5 +1,6 @@
 package account;
 
+import homeMenu.HomeMenu;
 import mainMenu.MainMenu;
 import utils.Display;
 import utils.FileHandler;
@@ -22,6 +23,7 @@ public class Login {
         Display.clearScreen();
         while (true) {
             boolean done;
+            if (listHasUsers()) break;
             String userName = Display.readInputFromUser("Enter user Name: ");
             String password = Display.readInputFromUser("Enter password: ");
             String encryptedPassword = auth.encryptPassword(password);
@@ -35,6 +37,16 @@ public class Login {
         while (true) {
             new MainMenu(users, index);
         }
+    }
+
+    private boolean listHasUsers() {
+        if(users.size()==0){
+            System.out.println("No register user available to login");
+            Display.returnMainMenu();
+            new HomeMenu();
+            return true;
+        }
+        return false;
     }
 
     private boolean validateLoginDetails(String userName, String encryptedPassword) {

@@ -51,6 +51,7 @@ public class Transaction {
     public void withdrawMoney() {
         Display.clearScreen();
         while (true) {
+            if (validateBalance("withdraw")) break;
             try {
                 System.out.print("Enter amount to withdraw: ");
                 String input = scanner.nextLine();
@@ -73,6 +74,8 @@ public class Transaction {
         Display.clearScreen();
         boolean done;
         while (true) {
+            if (validateUsers()) break;
+            if (validateBalance("transfer")) break;
             String fullName = Display.readInputFromUser("Enter user full name: ");
             done = validateUser(fullName);
             if (done) {
@@ -84,6 +87,22 @@ public class Transaction {
         }
         fileHandler.writeToFile(users);
         Display.returnMainMenu();
+    }
+
+    private boolean validateUsers() {
+        if (users.size() < 2) {
+            System.out.println("No register user available to transfer money");
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validateBalance(String value) {
+        if (senderBalance == 0) {
+            System.out.println("Your balance is 0.Please add some money to " + value);
+            return true;
+        }
+        return false;
     }
 
     private boolean validateUser(String fullName) {
