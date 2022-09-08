@@ -39,7 +39,7 @@ public class EditProfile {
         System.out.println("user name(Press enter if you do not want to change the user name): ");
         while (true) {
             boolean done;
-            userName = readInputFromUser("Enter new User Name: ", errorMessage("user name"));
+            userName = validateHelper.readInputFromUser("Enter new User Name: ", errorMessage("user name"), "update");
             done = validateHelper.validateUserName(userName, users);
             if (done) {
                 break;
@@ -53,7 +53,7 @@ public class EditProfile {
 
     private void updatePassword() {
         System.out.println("Password(Press enter if you do not want to change the password): ");
-        String password = readInputFromUser("Enter new password: ", Display.errorMessage("password"));
+        String password = validateHelper.readInputFromUser("Enter new password: ", errorMessage("password"), "update");
         if (!(password.equals(""))) {
             String encryptedPassword = auth.encryptPassword(password);
             users.get(index).setPassword(encryptedPassword);
@@ -64,15 +64,5 @@ public class EditProfile {
     private String errorMessage(String value) {
         String message = "Invalid Entry, " + value + " should not starts with space nor ends with space\nPlease enter valid " + value + ": ";
         return message;
-    }
-
-    private String readInputFromUser(String message, String errorMessage) {
-        System.out.print(message);
-        String input = scanner.nextLine();
-        while ((input.startsWith(" ")) || (input.endsWith(" "))) {
-            System.out.print(errorMessage);
-            input = scanner.nextLine();
-        }
-        return input;
     }
 }

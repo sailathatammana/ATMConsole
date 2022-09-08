@@ -37,7 +37,7 @@ public class Register {
         String fullName;
         while (true) {
             boolean done;
-            fullName = readInputFromUser("Enter Full Name: ", Display.errorMessage("full name"));
+            fullName = validateHelper.readInputFromUser("Enter Full Name: ", Display.errorMessage("full name"),"register");
             done = validateHelper.validateFullName(fullName, users);
             if (done) {
                 break;
@@ -50,7 +50,7 @@ public class Register {
         String userName;
         while (true) {
             boolean done;
-            userName = readInputFromUser("Enter User Name: ", Display.errorMessage("user name"));
+            userName = validateHelper.readInputFromUser("Enter User Name: ", Display.errorMessage("user name"),"register");
             done = validateHelper.validateUserName(userName, users);
             if (done) {
                 break;
@@ -60,18 +60,9 @@ public class Register {
     }
 
     private String getPassword() {
-        String password = readInputFromUser("Enter password: ", Display.errorMessage("password"));
+        String password = validateHelper.readInputFromUser("Enter password: ", Display.errorMessage("password"), "register");
         String encryptedPassword = auth.encryptPassword(password);
         return encryptedPassword;
     }
 
-    private String readInputFromUser(String message, String errorMessage) {
-        System.out.print(message);
-        String input = scanner.nextLine();
-        while ((input.equals("") || (input.startsWith(" ")) || (input.endsWith(" ")))) {
-            System.out.print(errorMessage);
-            input = scanner.nextLine();
-        }
-        return input;
-    }
 }
