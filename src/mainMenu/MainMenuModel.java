@@ -9,6 +9,8 @@ import utils.User;
 import java.util.List;
 
 public class MainMenuModel {
+    public final List<String> menuOptions = List.of("View Balance", "Deposit Money", "Withdraw Money",
+            "Transfer Money", "Edit Profile", "Logout");
     BalanceInquiry balance;
     Transaction transaction;
     EditProfile editProfile;
@@ -18,9 +20,6 @@ public class MainMenuModel {
         transaction = new Transaction(users, index);
         editProfile = new EditProfile(users, index);
     }
-
-    public final List<String> menuOptions = List.of("View Balance", "Deposit Money", "Withdraw Money",
-            "Transfer Money", "Edit Profile", "Logout");
 
     public List<String> getMenuOptions() {
         return menuOptions;
