@@ -7,7 +7,6 @@ import utils.User;
 import utils.ValidateHelper;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class EditProfile {
     private final List<User> users;
@@ -15,12 +14,10 @@ public class EditProfile {
     Encrypt auth;
     FileHandler fileHandler;
     ValidateHelper validateHelper;
-    private final Scanner scanner;
 
     public EditProfile(List<User> users, int index) {
         this.users = users;
         this.index = index;
-        scanner = new Scanner(System.in);
         auth = new Encrypt();
         fileHandler = new FileHandler();
         validateHelper = new ValidateHelper();
