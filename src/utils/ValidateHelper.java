@@ -35,6 +35,7 @@ public class ValidateHelper {
         }
         return true;
     }
+
     public String readInputFromUser(String message, String errorMessage, String condition) {
         Scanner scanner = new Scanner(System.in);
         System.out.print(message);
@@ -46,12 +47,11 @@ public class ValidateHelper {
         return input;
     }
 
-    private  boolean isCheck(String condition, String input) {
+    private boolean isCheck(String condition, String input) {
         boolean check;
-        if(Objects.equals(condition, "register")){
+        if (Objects.equals(condition, "register")) {
             check = (input.equals("") || (input.startsWith(" ")) || (input.endsWith(" ")));
-        }
-        else {
+        } else {
             check = (input.startsWith(" ")) || (input.endsWith(" "));
         }
         return check;

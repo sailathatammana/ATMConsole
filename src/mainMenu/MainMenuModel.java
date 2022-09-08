@@ -1,8 +1,8 @@
 package mainMenu;
 
 import menuActions.BalanceInquiry;
-import menuActions.Transaction;
 import menuActions.EditProfile;
+import menuActions.Transaction;
 import utils.Display;
 import utils.User;
 

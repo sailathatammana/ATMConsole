@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Login {
-    Encrypt auth = new Encrypt();
-    FileHandler fileHandler = new FileHandler();
     private List<User> users;
     private int index;
+    Encrypt auth = new Encrypt();
+    FileHandler fileHandler = new FileHandler();
     Scanner scanner = new Scanner(System.in);
 
     private List<User> getAllUsers() {
