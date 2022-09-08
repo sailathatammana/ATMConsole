@@ -111,7 +111,7 @@ public class Transaction {
 
     private boolean validateUser(String fullName) {
         for (User userData : users) {
-            if ((userData.getFullName().equals(fullName))) {
+            if ((userData.getFullName().equals(fullName)) && (userData != users.get(index))) {
                 userId = users.indexOf(userData);
                 return true;
             }

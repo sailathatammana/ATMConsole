@@ -37,7 +37,7 @@ public class Register {
         String fullName;
         while (true) {
             boolean done;
-            fullName = validateHelper.readInputFromUser("Enter Full Name: ", Display.errorMessage("full name"),"register");
+            fullName = validateHelper.readInputFromUser("Enter Full Name: ", Display.errorMessage("full name"), "register");
             done = validateHelper.validateFullName(fullName, users);
             if (done) {
                 break;
@@ -50,7 +50,7 @@ public class Register {
         String userName;
         while (true) {
             boolean done;
-            userName = validateHelper.readInputFromUser("Enter User Name: ", Display.errorMessage("user name"),"register");
+            userName = validateHelper.readInputFromUser("Enter User Name: ", Display.errorMessage("user name"), "register");
             done = validateHelper.validateUserName(userName, users);
             if (done) {
                 break;

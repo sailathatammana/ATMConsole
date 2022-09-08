@@ -1,6 +1,7 @@
 # ATM Console
 
-ATM Console is a terminal based application which can be used by users to View balance, Withdraw, Deposit and transfer money and also update profile.
+ATM Console is a terminal based application which can be used by users to View balance, Withdraw, Deposit and transfer
+money and also update profile.
 
 ## 1. Setup
 
@@ -35,9 +36,11 @@ ATM Console is a terminal based application which can be used by users to View b
 4. Run using "`java -jar ATMConsole.jar`"
 
 ## 2. Project organization
+
 ### 2.1 Requirement gathering
 
-A spreadsheet with the information related to the organization of the project. It includes user-stories, tasks and time estimation.
+A spreadsheet with the information related to the organization of the project. It includes user-stories, tasks and time
+estimation.
 
 [Google Spreadsheets link](https://docs.google.com/spreadsheets/d/1deLMtjigNl2--NIP-oqNHew_vsdzyGyC/edit#gid=1529849734)
 
