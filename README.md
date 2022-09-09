@@ -60,11 +60,13 @@ A sequence detail diagram to visualize how the application will work step by ste
 
 The class diagram allows to visualize the overall hierarchy of the project.
 
-[Overview of the project]()
+[Overview of the project](https://bit.ly/3B5ldAg)
 
-[User view of class diagram]()
+[Register view of class diagram](https://bit.ly/3qoIQ1w)
 
-[MainMenu view of class diagram]()
+[Login view if class diagram](https://bit.ly/3TWDdW4)
+
+[MainMenu view of class diagram](https://bit.ly/3KYVhuE)
 
 
 

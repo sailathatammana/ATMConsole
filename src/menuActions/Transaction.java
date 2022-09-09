@@ -78,7 +78,7 @@ public class Transaction {
         while (true) {
             if (listHasUsers()) break;
             if (validateBalance("transfer")) break;
-            System.out.print("Enter user full name/Enter `q` to go back to main menu\nInput:  ");
+            System.out.print("Enter user's full name/Enter `q` to go back to main menu\nInput:  ");
             String input = scanner.nextLine();
             if (Display.checkInput(input)) return;
             done = validateUser(input);
